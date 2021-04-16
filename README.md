@@ -2,7 +2,18 @@
 
 # Working title: ...
 
-**Students**: Xavier, Oriol, Rocío, and Sara ; **Mentors**: Karma and Chan ; **Company**: Basetis - https://www.basetis.com/
+**Students**: Xavier, Oriol, Rocío, and Sara ; **Mentors**: Karma and Apple ; **Company**: Basetis - https://www.basetis.com/
+
+### Inspirational links
+**For the force directed graph:**
+The basic version: https://observablehq.com/@d3/force-directed-graph?collection=@d3/d3-force
+Adding stickness to the layout so we could drag it: https://observablehq.com/@d3/sticky-force-layout?collection=@d3/d3-force
+If we could add hierarchy, I like this tree layout: https://observablehq.com/@d3/force-directed-tree?collection=@d3/d3-force
+A version with arrows: https://observablehq.com/@d3/mobile-patent-suits
+This version zooms: https://observablehq.com/@scax/force-directed-graph-with-zoom-and-stroke-scaling-svg
+This one has a nice hover feature where you see the node plus it's related elements: http://bl.ocks.org/eyaler/10586116
+
+I think the most important of these is to get some kind of hover highlight so you can see information flows, and probably also stickiness.
 
 ### Current summary
 - ...
