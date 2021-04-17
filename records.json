@@ -1,0 +1,581 @@
+[
+  {
+    "n": {
+"identity": 0,
+"labels": [
+        "Topic"
+      ],
+"properties": {
+"last_trend_prob_var": 0.08,
+"last_sentiment_score": 9.39,
+"num_pubs": 3195,
+"origin": "E",
+"num_cts": 0,
+"mesh_id": "D017497",
+"created_at": 1617840178,
+"mesh_active": true,
+"description": "A chronic suppurative and cicatricial disease of the apocrine glands occurring chiefly in the axillae in women and in the groin and anal regions in men. It is characterized by poral occlusion with secondary bacterial infection, evolving into abscesses which eventually rupture. As the disease becomes chronic, ulcers appear, sinus tracts enlarge, fistulas develop, and fibrosis and scarring become evident.",
+"tracked": true,
+"last_trend_prob": 48.27,
+"uri": "http://id.nlm.nih.gov/mesh/D017497",
+"mesh_term": "Hidradenitis Suppurativa",
+"updated_at": 1617972319,
+"supplementary_concept": false,
+"term": "Hidradenitis Suppurativa",
+"id": "26181215",
+"topic_id": "05407cf9-1436-4261-a776-da361799d10d"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 1,
+"labels": [
+        "Topic"
+      ],
+"properties": {
+"num_pubs": 1,
+"origin": "E",
+"mesh_id": "C538118",
+"num_cts": 0,
+"created_at": 1617840178,
+"mesh_active": true,
+"uri": "http://id.nlm.nih.gov/mesh/C538118",
+"mesh_term": "Hidradenitis suppurativa, familial",
+"updated_at": 1617840183,
+"supplementary_concept": true,
+"term": "Hidradenitis suppurativa, familial",
+"topic_id": "23e68998-2455-4fb4-b1ae-e80995b16ee9",
+"id": "26190108"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 2,
+"labels": [
+        "Product"
+      ],
+"properties": {
+"effective_time": 1570060800,
+"product_type": "HUMAN PRESCRIPTION DRUG",
+"updated_at": 1618149996,
+"product_id": "c49f4803-8c12-4262-b780-6b097e163fb1",
+"generic_name": "ADALIMUMAB",
+"created_at": 1618149996,
+"brand_name": "Humira",
+"manufacturer_name": "A-S Medication Solutions",
+"id": "55238081",
+"version": "1"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 3,
+"labels": [
+        "Product"
+      ],
+"properties": {
+"effective_time": 1614124800,
+"product_type": "HUMAN PRESCRIPTION DRUG",
+"updated_at": 1618149620,
+"product_id": "874057c0-a437-4a08-9105-38c1b2f3307b",
+"generic_name": "ADALIMUMAB",
+"created_at": 1618149620,
+"brand_name": "Humira",
+"manufacturer_name": "AbbVie Inc.",
+"id": "55233138",
+"version": "2135",
+"found_in": "manufacturer_name"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 4,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"created_at": 1618152686,
+"id": "55290087",
+"updated_at": 1618152686,
+"tweet_id": "1380981439697666055"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 5,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"created_at": 1618065988,
+"id": "55125517",
+"updated_at": 1618065988,
+"tweet_id": "1380836558933262336"
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 6,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1604805831,
+"sentiment": 0.0,
+"hashtags": [
+          "HumanRights",
+          "PatientRights",
+          "HidradenitisSuppurativa",
+          "MeMe",
+          "Dermatology",
+          "ResearchIsSupport",
+          "History",
+          "MyLifeMyStory"
+        ],
+"favourites": 9,
+"updated_at": 1618152686,
+"tweet_id": "1325277828951105536",
+"created_at": 1618152686,
+"text": "Pandemic Dreams of Hidradenitis Suppurativa: 
+
+#HumanRights #PatientRights #HidradenitisSuppurativa #MeMe #Dermatology #ResearchIsSupport #History #MyLifeMyStory https://t.co/SGvxifwOZy",
+"id": "55290084",
+"retweets": 6
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 7,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618067850,
+"sentiment": 0.5,
+"hashtags": [
+          "HSHeroes",
+          "HidradenitisSuppurativa",
+          "ChronicIllness"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380902768244707329",
+"created_at": 1618152686,
+"text": "RT @hsheroesca: For more information on HS treatment visit:
+https://t.co/7XJseMyzhk
+
+#HSHeroes #HidradenitisSuppurativa #ChronicIllness htt…",
+"id": "55290082",
+"retweets": 1
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 8,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618071308,
+"sentiment": 0.3,
+"hashtags": [],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380917271749554181",
+"created_at": 1618152686,
+"text": "RT @JAMADerm: Infliximab-abda may be an effective treatment option for hidradenitis suppurativa, as demonstrated by a recent retrospective…",
+"id": "55290080",
+"retweets": 1
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 9,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618081950,
+"sentiment": 0.0,
+"hashtags": [
+          "bscp2021"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380961908421971981",
+"created_at": 1618152686,
+"text": "RT @CallynIwuala: Currently, talking Hidradenitis Suppurativa with Dr. Angel Byrd, a recent funding award winner @SkinOfColor . #bscp2021…",
+"id": "55290079",
+"retweets": 2
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 10,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618081864,
+"sentiment": 0.08333333333333333,
+"hashtags": [
+          "bscp2021",
+          "dermtwitter",
+          "medtwitter"
+        ],
+"favourites": 14,
+"updated_at": 1618152686,
+"tweet_id": "1380961548684902405",
+"created_at": 1618152686,
+"text": "Currently, talking Hidradenitis Suppurativa with Dr. Angel Byrd, a recent funding award winner @SkinOfColor . #bscp2021
+
+WOW. 
+
+suddenly really interested in the topic.
+
+#dermtwitter 
+#medtwitter",
+"id": "55290074",
+"retweets": 2
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 11,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618080715,
+"sentiment": 0.0,
+"hashtags": [],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380956728477380609",
+"created_at": 1618152686,
+"text": "@childofuranus I have mask acne like a motherfucker so my hyperpigmentation is so shitty rn. I get eczema during the summer time and especially when I’m stressed tf out. Also, hidradenitis suppurativa cause I’m overweight :)",
+"id": "55290075",
+"retweets": 0
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 12,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618085836,
+"sentiment": 0.0,
+"hashtags": [
+          "HumanRights",
+          "PatientRights",
+          "HidradenitisSuppurativa",
+          "MeMe",
+          "Dermatology"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380978207772405765",
+"created_at": 1618152686,
+"text": "RT @RJ_Howes: Pandemic Dreams of Hidradenitis Suppurativa: 
+
+#HumanRights #PatientRights #HidradenitisSuppurativa #MeMe #Dermatology #Resea…",
+"id": "55290076",
+"retweets": 6
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 13,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618085871,
+"sentiment": 0.0,
+"hashtags": [
+          "HumanRights",
+          "PatientRights",
+          "HidradenitisSuppurativa",
+          "MeMe",
+          "Dermatology"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380978352085868546",
+"created_at": 1618152686,
+"text": "RT @RJ_Howes: Pandemic Dreams of Hidradenitis Suppurativa: 
+
+#HumanRights #PatientRights #HidradenitisSuppurativa #MeMe #Dermatology #Resea…",
+"id": "55290078",
+"retweets": 6
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 14,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1505811113,
+"sentiment": -0.3333333333333333,
+"hashtags": [
+          "LayDownYourHSBurden"
+        ],
+"favourites": 8,
+"updated_at": 1618152686,
+"tweet_id": "910063887361261569",
+"created_at": 1618152686,
+"text": "\"Hidradenitis Suppurativa: As Serious as a Heart Attack\" #LayDownYourHSBurden https://t.co/kvChtEP3i4",
+"id": "55290072",
+"retweets": 11
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 15,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618089180,
+"sentiment": 0.25,
+"hashtags": [],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380992232174596099",
+"created_at": 1618152686,
+"text": "@astro_sass @iJaadee I have hidradenitis suppurativa with the possibility of eczema as well. Need diagnosis on eczema. 
+
+Mostly Stage 2 &amp; 3 at different areas of my body for HS",
+"id": "55290071",
+"retweets": 0
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 16,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1507352568,
+"sentiment": 0.5,
+"hashtags": [
+          "HidradenitisSuppurativa",
+          "SkinDeep",
+          "LayDownYourHsBurden"
+        ],
+"favourites": 5,
+"updated_at": 1618152686,
+"tweet_id": "916529217180909568",
+"created_at": 1618152686,
+"text": "#HidradenitisSuppurativa more than #SkinDeep.
+#LayDownYourHsBurden
+https://t.co/0OoNWDJNuc https://t.co/UA5E9K57E5",
+"id": "55290070",
+"retweets": 6
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 17,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1506370755,
+"sentiment": -0.3333333333333333,
+"hashtags": [
+          "LayDownYourHSBurden"
+        ],
+"favourites": 5,
+"updated_at": 1618152686,
+"tweet_id": "912411195805622273",
+"created_at": 1618152686,
+"text": "\"Hidradenitis Suppurativa: As Serious as Suicide\" 
+#LayDownYourHSBurden https://t.co/KvFWein7zy",
+"id": "55290069",
+"retweets": 5
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 18,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618085404,
+"sentiment": 0.0,
+"hashtags": [
+          "bscp2021"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380976395547865090",
+"created_at": 1618152686,
+"text": "RT @CallynIwuala: Currently, talking Hidradenitis Suppurativa with Dr. Angel Byrd, a recent funding award winner @SkinOfColor . #bscp2021…",
+"id": "55290068",
+"retweets": 2
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 19,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1617837035,
+"sentiment": 0.25,
+"hashtags": [],
+"favourites": 28,
+"updated_at": 1617898302,
+"tweet_id": "1379934660411719685",
+"created_at": 1617898302,
+"text": "Research Fellowship in Inflammatory Skin Diseases &amp; Health Equity. If interested please forward your CV with Step 1/2 scores and cover letter to lauren.orenstein@emory.edu. Deadline is April 21st;  applications will be considered on a rolling basis. Anticipated start: Summer 2021 https://t.co/FFIX57jmZp",
+"id": "54762428",
+"retweets": 12
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 20,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1506605762,
+"sentiment": -0.35,
+"hashtags": [
+          "Hidradenitis"
+        ],
+"favourites": 69,
+"updated_at": 1618152686,
+"tweet_id": "913396886924488704",
+"created_at": 1618152686,
+"text": "⚡️ “Our lives with Hidradenitis Suppurativa” by @sewoHJR
+We have #Hidradenitis Suppurativa (HS). HS is a painful inflammatory skin disease. We may need your help, compassion &amp; encouragement to talk openly about our lives with HS. 
+https://t.co/lCSeJ7qmVQ https://t.co/W45FkbG8YV",
+"id": "55290066",
+"retweets": 47
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 21,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618087847,
+"sentiment": 0.0,
+"hashtags": [],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1380986641305731072",
+"created_at": 1618152686,
+"text": "RT @caveofbeauty: Finally doing my thread on HS. It’ll be a combination of 3 abnormalities with the sweat glands: 
+
+- Hidradenitis Suppurat…",
+"id": "55290060",
+"retweets": 177
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 22,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618121415,
+"sentiment": 0.5,
+"hashtags": [
+          "HidradenitisSuppurativa",
+          "SkinDeep",
+          "LayDownYourHsBurden"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1381127437233184773",
+"created_at": 1618152686,
+"text": "RT @RJ_Howes: #HidradenitisSuppurativa more than #SkinDeep.
+#LayDownYourHsBurden
+https://t.co/0OoNWDJNuc https://t.co/UA5E9K57E5",
+"id": "55290059",
+"retweets": 6
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 23,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618121298,
+"sentiment": -0.3333333333333333,
+"hashtags": [
+          "LayDownYourHSBurden"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1381126946226991109",
+"created_at": 1618152686,
+"text": "RT @RJ_Howes: \"Hidradenitis Suppurativa: As Serious as a Heart Attack\" #LayDownYourHSBurden https://t.co/kvChtEP3i4",
+"id": "55290053",
+"retweets": 11
+      }
+    }
+  },
+  {
+    "n": {
+"identity": 24,
+"labels": [
+        "Tweet"
+      ],
+"properties": {
+"date": 1618121363,
+"sentiment": -0.3333333333333333,
+"hashtags": [
+          "LayDownYourHSBurden"
+        ],
+"favourites": 0,
+"updated_at": 1618152686,
+"tweet_id": "1381127216814157824",
+"created_at": 1618152686,
+"text": "RT @RJ_Howes: \"Hidradenitis Suppurativa: As Serious as Suicide\" 
+#LayDownYourHSBurden https://t.co/KvFWein7zy",
+"id": "55290058",
+"retweets": 5
+      }
+    }
+  }
+]

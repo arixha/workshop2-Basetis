@@ -21,9 +21,7 @@ var svg = d3.select("#graph")
     .append('svg')
     .attr('viewBox', [0, 0, width, height])
 
-d3.json('https://raw.githubusercontent.com/sarachodosh/workshop2-Basetis/main/graphs/data.json').then ( data => {
-
-  drag = simulation => {
+drag = simulation => {
     
     function dragstarted(event) {
       if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -37,7 +35,7 @@ d3.json('https://raw.githubusercontent.com/sarachodosh/workshop2-Basetis/main/gr
     }
     
     function dragended(event) {
-      if (!event.active) simulation.alphaend(0);
+      if (!event.active) simulation.alphaTarget(0);
       event.subject.fx = null;
       event.subject.fy = null;
     }
@@ -47,6 +45,11 @@ d3.json('https://raw.githubusercontent.com/sarachodosh/workshop2-Basetis/main/gr
         .on("drag", dragged)
         .on("end", dragended);
   }
+
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => {
+d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
+
+  
 
   console.log(data)
 
@@ -93,7 +96,7 @@ d3.json('https://raw.githubusercontent.com/sarachodosh/workshop2-Basetis/main/gr
         .attr("cy", d => d.y);
   });
 
-  invalidation.then(() => simulation.stop());
+  //invalidation.then(() => simulation.stop());
 
 })
 
