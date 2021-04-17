@@ -57,8 +57,9 @@ function color() {
 
 
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => { 
-//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/records.json').then ( data => {
-d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data.json').then ( data => { // more diverse data, doesn't work right now!
+d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data_moreNodes.json').then ( data => { // only twitter data
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
 
   //console.log(data)
 
@@ -70,9 +71,11 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
 
   const linkScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([150,50])
 
+  console.log(data.nodes)
+  console.log(data.links)
 
   const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.id).distance(d => data.links.hasOwnProperty('score') ? linkScale(data.links[d.id].score) : 10))
+      .force("link", d3.forceLink(links).id(d => d.index))//.distance(d => data.links.hasOwnProperty('score') ? linkScale(data.links[d.id].score) : 10))
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -90,7 +93,7 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-      .attr("r", d => Math.sqrt(d.group)*2)
+      .attr("r", 2)
       .attr("fill", '#000')
       .call(drag(simulation));
 
@@ -109,8 +112,6 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
         .attr("cx", d => d.x)
         .attr("cy", d => d.y);
   });
-
-  //invalidation.then(() => simulation.stop());
 
 })
 
