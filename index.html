@@ -59,23 +59,26 @@ function color() {
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/records.json').then ( data => {
 d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
 
-  console.log(data)
+  //console.log(data)
 
   const links = data.links.map(d => Object.create(d));
   const nodes = data.nodes.map(d => Object.create(d));
 
+  console.log(nodes)
+  console.log(links)
+
   const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.id))
+      .force("link", d3.forceLink(links).id(d => d.score))
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(width / 2, height / 2));
 
   const link = svg.append("g")
-      .attr("stroke", color(links))
       .attr("stroke-opacity", 0.6)
     .selectAll("line")
     .data(links)
     .join("line")
-      .attr("stroke-width", 1.5);
+      .attr("stroke-width", 1.5)
+      .attr("stroke", color(links));
 
   const node = svg.append("g")
       .attr("stroke", "#fff")
@@ -90,7 +93,6 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
   node.append("title")
       .text(d => d.id);
 
-  console.log(links)
 
   simulation.on("tick", () => {
     link
