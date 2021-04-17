@@ -68,11 +68,11 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
   console.log(nodes)
   console.log(links)
 
-  const linkScale = d3.scaleLinear().domain(d3.extent(links.map(d => d.score))).range([150,50])
+  const linkScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([150,50])
 
 
   const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.id).strength(d => linkScale(links[d.id].score)))
+      .force("link", d3.forceLink(links).id(d => d.id).distance(d => data.links.hasOwnProperty('score') ? linkScale(data.links[d.id].score) : 10))
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(width / 2, height / 2));
 
