@@ -55,6 +55,7 @@ function color() {
 }
 
 
+
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => { 
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/records.json').then ( data => {
 d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
@@ -67,8 +68,11 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing
   console.log(nodes)
   console.log(links)
 
+  const linkScale = d3.scaleLinear().domain(d3.extent(links.map(d => d.score))).range([150,50])
+
+
   const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.score))
+      .force("link", d3.forceLink(links).id(d => d.id).strength(d => linkScale(links[d.id].score)))
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(width / 2, height / 2));
 
