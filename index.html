@@ -21,33 +21,34 @@ var svg = d3.select("#graph")
     .append('svg')
     .attr('viewBox', [0, 0, width, height])
 
+// drag function for simulation
 drag = simulation => {
     
-    function dragstarted(event) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
-      event.subject.fx = event.subject.x;
-      event.subject.fy = event.subject.y;
-    }
-    
-    function dragged(event) {
-      event.subject.fx = event.x;
-      event.subject.fy = event.y;
-    }
-    
-    function dragended(event) {
-      if (!event.active) simulation.alphaTarget(0);
-      event.subject.fx = null;
-      event.subject.fy = null;
-    }
-    
-    return d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended);
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
   }
+  
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+  
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+  
+  return d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+}
 
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => {
-d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => {
+d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/records.json').then ( data => {
 
   
 
