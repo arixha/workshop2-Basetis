@@ -1,0 +1,267 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<title>D3 Network</title>
+	<meta charset="utf-8">
+  <style>
+
+    .links line {
+      stroke: #999;
+      stroke-opacity: 0.6;
+    }
+    
+    .nodes circle {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+    
+    
+    
+</style>
+
+</head>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Create a div where the graph will take place -->
+
+<body>
+
+<!-- Create a div where the graph will take place -->
+<div id="graph"></div>
+
+
+<script>
+
+// set the dimensions and margins of the graph
+const width = 800;
+const height = 800;
+
+
+// append the svg object to the body of the page
+var svg = d3.select("#graph")
+    .append('svg')
+    .attr('viewBox', [0, 0, width, height])
+
+// drag function for simulation
+drag = simulation => {
+    
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+  }
+  
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+  
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+  
+  return d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+}
+
+
+const sizes = [10, 4, 2]
+const types = ['Topic', 'TwitterAccount', 'Tweet'];
+function size() {
+  const scale = d3.scaleOrdinal().domain(types).range(sizes);
+  return d => scale(d.labels)
+}
+
+const relationships = ['mentions', 'tweets', 'replies', 'retweets', 'quotes', 'worksOn'];
+const lineWeights = [0.5, 0.5, 0.5, 1, 1, 2]
+function lineWeight() {
+  const scale = d3.scaleOrdinal().domain(relationships).range(lineWeights);
+  return d => scale(d.label)
+}
+
+const colors = ['#ec4977', '#fe7069', '#ff9863', '#28dfce', '#00cceb', '#0cb4f5']; //'#ffbe6b', '#ffe382', '#d8f496', '#8cedad',
+function color() {
+  const scale = d3.scaleOrdinal().domain(relationships).range(colors);
+  return d => scale(d.label);
+};
+
+
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => { // full data
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data.json').then ( data => { // more diverse data, doesn't work right now!
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data_moreNodes.json').then ( data => { // only twitter data
+//d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => { // fake data
+d3.json('subset1.json').then ( data => {
+
+  console.log(data)
+  
+  const links = data.links.map(d => Object.create(d));
+  const nodes = data.nodes.map(d => Object.create(d));
+
+  // console.log(nodes)
+  // console.log(links)
+
+  const linkScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([50, 450]);
+  const bodyScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([-70, 10]);
+
+  // console.log(d3.extent(data.links.map(d => d.score)))
+
+  // console.log(data.nodes)
+  // console.log(data.links)
+  // console.log(linkScale(.9))
+  //console.log(bodyScale(0))
+
+  const simulation = d3.forceSimulation(nodes)
+      .force("link", d3.forceLink(links).id(d => d.id).distance(d => data.links.hasOwnProperty('score') ? linkScale(data.links[d.id].score) : 1))
+      .force("charge", d3.forceManyBody().strength(d => data.links.hasOwnProperty('score') ? bodyScale(data.links[d.id].score) : -30))
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+  const link = svg.append("g")
+      .attr("stroke-opacity", 0.6)
+    .selectAll("line")
+    .data(links)
+    .join("line")
+      .attr("stroke-width", lineWeight(links))
+      .attr("stroke", color(links));
+
+  const tooltip = d3
+    .select('body')
+    .append('div')
+    .attr('id', 'tooltip')
+    .style("font-family", "'Work Sans', sans-serif")
+    .style('position', 'absolute')
+    .style('z-index', '1')
+    .style('visibility', 'hidden')
+    .style('padding', '10px')
+    .style('background', 'rgba(0,0,0,0.6)')
+    .style('font-size', '16px')
+    .style('width', '300px')
+    .style('border-radius', '4px')
+    .style('color', '#fff');
+
+  const node = svg.append("g")
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 0.75)
+    .selectAll("circle")
+    .data(nodes)
+    .join("circle")
+      .attr("r", size(nodes))
+      .attr("fill", '#000')
+      .call(drag(simulation))
+      .on("mouseover", function(e, d, i) {
+        let tooltipWidth = tooltip.node().offsetWidth;
+        let tooltipHeight = tooltip.node().offsetHeight;
+        tooltip
+          .style("left", e.pageX - tooltipWidth  + 'px')
+          .style("top", e.pageY - tooltipHeight  + 'px')
+          .style('visibility', 'visible').html(`<table>
+                    <tbody>
+                        <tr>                         
+                            <td>${d.labels[0]}  |  </td>
+                            <td><b> Name </b></td>
+                            <td><b> Num. pubs </b></td>
+                            <td><b> Num. citations </b></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>${d.properties.name}</td>
+                            <td>${d.properties.num_publications}</td>
+                            <td>${d.properties.num_citations}</td>
+                        </tr>
+                    </tbody>
+                </table>`);
+        d3.select(this).attr("fill", "steelblue");
+        });
+
+  node.append("title")
+      .text(d => d.id);
+
+
+  simulation.on("tick", () => {
+    link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+    node
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
+  });
+
+  //let relationships2 = data.map((d, index) => {
+  //
+  //return {index, label, startId: start.id, endId: end.id}
+//return {index, label, start, end}
+//})
+//console.log(relationships2[0])
+
+// let rels = []
+// ids.forEach((id, i) => {
+//   let idOthers = ids.filter(i => i!==id)
+  
+//   let tempRels = relationships.filter(r => 
+//     (r.start.id === id && idOthers.includes(r.end.id)) ||
+//     (r.end.id === id && idOthers.includes(r.start.id))
+//   )
+//   console.log(tempRels.map(l=>l.index))
+//   rels = rels.concat(tempRels)
+// })
+
+// const indexAll = rels.map(l=>l.index).filter((v, i, a) => a.indexOf(v) === i)
+// console.log(indexAll.length, indexAll)
+
+
+// //sandbox: find interesting nodes
+// const candidates = data//.slice(0,10000)
+// .filter(d1=>d1.r.label==="worksOn")
+// .filter(d2=>d2.r.properties.score>0.95)
+// console.log(candidates.map(c=>{
+//   const d = c.r
+//   return [d.start.labels, d.end.labels]
+// }))
+ 
+// const relTypes = data//.slice(0, 10)
+// .map(d1 => d1.r.label)//{lable: d1.r.label/*, hasProperites: d1.r.properties*/})
+// .filter((d2, i, a) => a.indexOf(d2) === i)
+// console.log(relTypes)
+/*
+["preferredMappedTo", //topics
+ "isRelatedTo", //tweet, pub -> topic
+ "worksOn", //author, twitterAcc, org -> topic, score
+ "hasSuggestedTopic", //topics
+ "replies", 
+ "retweets", 
+ "tweets", 
+ "mentions", 
+ "quotes", 
+ "cites", 
+ "isAuthor", 
+ "isSponsor", 
+ "hasPublication", 
+ "hasRelatedOrganization", //orgs
+ "hasProduct", 
+ "pharmacologicalAction"]
+ */
+
+
+/*
+- split into 3 categoreis
+- worksOn
+- only 1 connection
+*/
+
+//const links2 = indexAll.map(i => data[i])
+//console.log(links2)
+
+})
+
+</script>
+</body>
+
