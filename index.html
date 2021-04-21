@@ -84,7 +84,7 @@ function color() {
 
 function table(data){ 
     let cols = Object.keys(data);
-    console.log(cols)
+    //console.log(cols)
     let nameRow = cols  
       .map(col => `<th>${col}</th>`)
       .join("");
@@ -182,12 +182,13 @@ function table(data){
       .on("mouseover", function(e, d, i) {
         let tooltipWidth = tooltip.node().offsetWidth;
         let tooltipHeight = tooltip.node().offsetHeight;
-        const content = new Array(d.properties)[0]
-        console.log(table(content));
+        const content = new Array(d.properties)[0];
+        const labels = [...new Set(data.nodes.map(d => d.labels[0]))];
+        console.log(labels)
         tooltip
           .style("left", e.pageX - tooltipWidth  + 'px')
           .style("top", e.pageY - tooltipHeight  + 'px')
-          .style('visibility', 'visible').html(table(content))
+          .style('visibility', 'visible').html(`<h3>${d.labels}</h3> ${table(content)}`)
           d3.select(this).attr("fill", "steelblue");
       })
       .on('mousemove', function(e) {
