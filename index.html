@@ -84,24 +84,33 @@ function color() {
 
 function table(data){ 
     let cols = Object.keys(data);
-    let headerRow = cols  
+    console.log(cols)
+    let nameRow = cols  
       .map(col => `<th>${col}</th>`)
       .join("");
     let rows = [data]
       .map(row => {
-        let tds = cols.map(col => `<td>${row[col]}</td>`).join("");
-        return `<tr>${tds}</tr>`;
+        let tds = cols.map(col => `<tr><td><b>${col} </b>: 
+          ${row[col]} </td></tr>`).join("");
+       return `${tds}`;
       })
       .join("");
-    const table = `
+      const table = `
     <table>
-      <thead>
-        <tr>${headerRow}</tr>
-      <thead>
+
       <tbody>
         ${rows}
       <tbody>
     <table>`;
+    // const table = `
+    // <table>
+    //    <thead>
+    //    <tr>${nameRow}</tr>
+    //    <thead>
+    //   <tbody>
+    //     ${rows}
+    //   <tbody>
+    // <table>`;
 
     return table;
   };
@@ -111,13 +120,12 @@ function table(data){
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data_moreNodes.json').then ( data => { // only twitter data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => { // fake data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/main/subset_reversed.json').then ( data => {
-  d3.json('secondNetwork.json').then ( data => {
+  d3.json('subset_reversed.json').then ( data => {
   
 
   const links = data.links.map(d => Object.create(d));
   const nodes = data.nodes.map(d => Object.create(d));
   
-
   // console.log(nodes)
   // console.log(links)
 
@@ -157,6 +165,7 @@ function table(data){
     .style('font-size', '11px')
     .style('border-radius', '4px')
     .style('color', '#fff');
+  
 
   const node = svg.append("g")
       .attr("stroke", "#222")
@@ -196,10 +205,13 @@ function table(data){
         .style("fill-opacity","0.6")
       })
     ;
+    
+  
+  
 
   node.append("title")
       .text(d => d.id);
-
+  
   simulation.on("tick", () => {
     link
         .attr("x1", d => d.source.x)
@@ -210,12 +222,23 @@ function table(data){
     node
         .attr("cx", d => d.x)
         .attr("cy", d => d.y);
-  });
+  })
+  
+  
+  
+
+  
   
   // utils
   // -----
   // https://observablehq.com/@sechodosh/graph
   // https://observablehq.com/@x80110/graph
+
+  // groups
+  // https://observablehq.com/@ravengao/force-directed-graph-with-cola-grouping
+  // https://bl.ocks.org/bumbeishvili/f027f1b6664d048e894d19e54feeed42
+  // https://bl.ocks.org/GerHobbelt/3104394 <- this one is very interesting
+
 
 })
 
