@@ -15,6 +15,14 @@
 <body>
 
 <!-- Create a div where the graph will take place -->
+<select id="json_sources" name="json_sources">
+  <option value ="secondNetwork.json" selected>secondNetwork.json</option>
+  <option value ="subset_reversed.json">subset_reversed.json</option>
+  <option value ="subset_smaller.json">subset_smaller.json</option>
+  <option value ="subset.json">subset.json</option>
+  <option value ="subset1.json">subset1.json</option>
+  <option value ="data.json">data.json</option>
+</select>​
 <div id="graph"></div>
 
 
@@ -79,7 +87,6 @@ function table(data){
       .join("");
       const table = `
     <table>
-
       <tbody>
         ${rows}
       <tbody>
@@ -99,12 +106,25 @@ function table(data){
 //////////////
 
 //// viz ////
+/// selector
+var dropdown = d3.select("#json_sources")
+var change = function() {
+  var source = dropdown.node().options[dropdown.node().selectedIndex].value;
+  d3.json(source, function(json) {
+     //continue doing stuff here.
+  })
+}
+
+dropdown.on("change", change)
+change(); //trigger json on load
+/// data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/data.json').then ( data => { // full data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data.json').then ( data => { // more diverse data, doesn't work right now!
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/filtered_data_moreNodes.json').then ( data => { // only twitter data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/sara-testing/miserables.json').then ( data => { // fake data
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/main/subset_reversed.json').then ( data => {
-  d3.json('secondNetwork.json').then ( data => {
+
+  d3.json('subset_reversed (1).json').then ( data => {
     const links = data.links.map(d => Object.create(d));
     const nodes = data.nodes.map(d => Object.create(d));
 
