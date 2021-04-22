@@ -15,14 +15,14 @@
 <body>
 
 <!-- Create a div where the graph will take place -->
-<select id="json_sources" name="json_sources">
+<!-- <select id="json_sources" name="json_sources">
   <option value ="secondNetwork.json" selected>secondNetwork.json</option>
   <option value ="subset_reversed.json">subset_reversed.json</option>
   <option value ="subset_smaller.json">subset_smaller.json</option>
   <option value ="subset.json">subset.json</option>
   <option value ="subset1.json">subset1.json</option>
   <option value ="data.json">data.json</option>
-</select>​
+</select>​ -->
 <div id="graph"></div>
 
 
@@ -32,7 +32,7 @@
 const width = 800;
 const height = 800;
 const colorScale = d3.scaleOrdinal(d3.schemePuBuGn[5]);
-const sizes = [4, 6, 2]
+const sizes = [16, 8, 4]
 const types = ['Topic', 'TwitterAccount', 'Tweet'];
 const relationships = ['mentions', 'tweets', 'replies', 'retweets', 'quotes', 'worksOn'];
 const lineWeights = [0.5, 0.5, 0.5, 1, 1, 2]
@@ -156,11 +156,11 @@ change(); //trigger json on load
 
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(d => data.links.hasOwnProperty('score') ? linkScale(data.links[d.id].score) : 1))
-        .force("charge", d3.forceManyBody().strength(d => data.links.hasOwnProperty('score') ? bodyScale(data.links[d.id].score) : -60))
+        .force("charge", d3.forceManyBody().strength(d => data.links.hasOwnProperty('score') ? bodyScale(data.links[d.id].score) : -50))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     const link = svg.append("g")
-      .attr("stroke-opacity", 0.5)
+      .attr("stroke-opacity", 1)
       .selectAll("line")
       .data(links)
       .join("line")
@@ -182,15 +182,14 @@ change(); //trigger json on load
       .style('color', '#fff');
 
     const node = svg.append("g")
-        .attr("stroke", "#222")
-        .attr("stroke-width", 1.5)
-        .attr("stroke-opacity", 0.3)
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 2)
       .selectAll("circle")
       .data(nodes)
       .join("circle")
         .attr("r", size(nodes))
-        .attr("fill", d => colorScale(d.labels[0])) //"#000")
-        .attr("fill-opacity","0.6")
+        .attr("fill", "#000")//d => colorScale(d.labels[0])) 
+        .attr("fill-opacity","1")
         .call(drag(simulation))
         
         // Interaction [tooltip, highlights]
@@ -217,8 +216,8 @@ change(); //trigger json on load
         .on("mouseout", function(e, d) {
           tooltip.style('visibility', 'hidden');
           d3.select(this)
-          .attr("fill", d => colorScale(d.labels[0]))
-          .style("fill-opacity","0.6")
+          .attr("fill", "#000")
+          .style("fill-opacity","0.8")
         });
     d3.zoom().on("zoom", (event) =>{ 
     node.attr("transform", event.transform),
