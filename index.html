@@ -11,7 +11,15 @@
 <script src="https://d3js.org/d3.v6.js"></script>
 
 <!-- Create a div where the graph will take place -->
+<style>
+  .circles.unselected {
+  fill-opacity:0.1;
+}
 
+.circles {
+  cursor: pointer;
+}
+</style>
 <body>
 
 <!-- Create a div where the graph will take place -->
@@ -58,6 +66,7 @@ drag = simulation => {
       event.subject.fx = event.subject.x;
       event.subject.fy = event.subject.y;
     }
+    
     function dragged(event) {
       event.subject.fx = event.x;
       event.subject.fy = event.y;
@@ -71,7 +80,8 @@ drag = simulation => {
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended);
-}
+    }
+
 function table(data){ 
     let cols = Object.keys(data);
     //console.log(cols)
@@ -82,7 +92,7 @@ function table(data){
       .map(row => {
         let tds = cols.map(col => `<tr><td><b>${col} </b>: 
           ${row[col]} </td></tr>`).join("");
-       return `${tds}`;
+      return `${tds}`;
       })
       .join("");
       const table = `
@@ -103,6 +113,12 @@ function table(data){
 
     return table;
   };
+  
+  
+  
+  
+  
+ 
 //////////////
 
 //// viz ////
@@ -116,16 +132,33 @@ function table(data){
 //d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/main/subset_reversed.json').then ( data => {
 
   d3.json('subset_reversed.json').then ( data => {
-    const links = data.links.map(d => Object.create(d));
+    
+    // remap indices for source and target
+    let linksWithIndex = data.links.map(d => {
+      return {
+          id: d.id,
+          type: d.type,
+          label: d.label,
+          source: d.source,
+          source_index: data.nodes.map(a=>a.id).indexOf(d.source), // gets from nodes the indexOf(id in link)
+          source_label: d.start_label,
+          target: d.target,
+          target_index: data.nodes.map(a=>a.id).indexOf(d.target),
+          target_label: d.target_label,
+          score: d.score
+        }
+    })
+    //console.log(data.nodes.map(d=> d))
+    const links = linksWithIndex.map(d => Object.create(d));
     const nodes = data.nodes.map(d => Object.create(d));
+    // console.log(nodes)
+    // console.log(links)
 
     
     const linkScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([50, 450]);
     const bodyScale = d3.scaleLinear().domain(d3.extent(data.links.map(d => d.score))).range([-70, 10]);
-
-    // console.log(nodes)
-    // console.log(links)
-  
+    
+    
     // append the svg object to the body of the page
     var svg = d3.select("#graph")
       .append('svg')
@@ -172,6 +205,7 @@ function table(data){
       .style('border-radius', '4px')
       .style('color', '#fff');
 
+
     const node = svg.append("g")
         .attr("stroke", "#fff")
         .attr("stroke-width", 2)
@@ -183,36 +217,49 @@ function table(data){
         .attr("fill-opacity","1")
         .call(drag(simulation))
         
-        // Interaction [tooltip, highlights]
-        .on("mouseover", function(e, d, i) {
-          let tooltipWidth = tooltip.node().offsetWidth;
-          let tooltipHeight = tooltip.node().offsetHeight;
-          const content = new Array(d.properties)[0];
-          const labels = [...new Set(data.nodes.map(d => d.labels[0]))];
-          console.log(labels)
-          tooltip
-            .style("left", e.pageX - tooltipWidth  + 'px')
-            .style("top", e.pageY - tooltipHeight  + 'px')
-            .style('visibility', 'visible').html(`<h3>${d.labels}</h3> ${table(content)}`)
-            d3.select(d.target, d.source).attr("fill", "steelblue");
-          })
-        .on('mousemove', function(e) {
-          let tooltipWidth = tooltip.node().offsetWidth;
-          let tooltipHeight = tooltip.node().offsetHeight;
-          tooltip
-            .style("left", e.pageX - tooltipWidth / 2 + 'px')
-            .style("top", e.pageY - tooltipHeight - 10 + 'px');
-        })
+         //Interaction [tooltip, highlights]
+         .on("mouseover.tooltip", function(e, d, i) {
+           let tooltipWidth = tooltip.node().offsetWidth;
+           let tooltipHeight = tooltip.node().offsetHeight;
+           const content = new Array(d.properties)[0];
+           const labels = [...new Set(data.nodes.map(d => d.labels[0]))];
+           const linkedNodes = linksWithIndex.filter(n=> n.source === d.id).map(a=> a.target_index)
+           //console.log(linkedNodes)
+           tooltip
+             .style("left", e.pageX - tooltipWidth  + 'px')
+             .style("top", e.pageY - tooltipHeight  + 'px')
+             .style('visibility', 'visible').html(`<h3>${d.labels}</h3> ${table(content)}`)
+             d3.selectAll(node).attr("opacity",0.2)
+             
+             
+             link.attr('stroke-opacity', l=> {
+              if (d === l.source) return 1;
+              else                return 0.05;
+              
+            })
 
-        .on("mouseout", function(e, d) {
-          tooltip.style('visibility', 'hidden');
-          d3.select(this)
-          .attr("fill", "#000")
-          .style("fill-opacity","0.8")
-        });
+
+          })
+         .on('mousemove', function(e) {
+           let tooltipWidth = tooltip.node().offsetWidth;
+           let tooltipHeight = tooltip.node().offsetHeight;
+           tooltip
+             .style("left", e.pageX - tooltipWidth / 2 + 'px')
+             .style("top", e.pageY - tooltipHeight - 10 + 'px');
+         })
+         .on("mouseout", function(e, d) {
+           tooltip.style('visibility', 'hidden');
+           d3.selectAll(node)
+           .attr("fill","black")
+           d3.selectAll(node)
+           .attr("opacity","1")
+           d3.selectAll(link)
+           .attr("stroke-opacity","1")
+         })
+  
     d3.zoom().on("zoom", (event) =>{ 
-    node.attr("transform", event.transform),
-    link.attr("transform", event.transform)})(svg);
+      node.attr("transform", event.transform),
+      link.attr("transform", event.transform)})(svg);
     
     node.append("title")
         .text(d => d.id);
