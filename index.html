@@ -71,7 +71,7 @@ button {
   <div class="grid-container">
     <div class="sidebar">
       <h3>Explore</h3>
-      <p style="font-size:12px; padding-top:-2%"><i>👆 hover the nodes to reveal their information</i></p>
+      <p style="font-size:12px; padding-top:-2%"><i>🔍 scroll to zoom in/out<br>👆 hover the nodes to reveal their information</i></p>
       <!-- <td><select id="dropdown_type" onchange="changeType()"></select></td>
       <td><select id="dropdown_guide" onchange="changeGuide()"></select></td> -->
       <!-- <button>⎘</button> -->
@@ -396,7 +396,7 @@ d3.json('https://raw.githubusercontent.com/arixha/workshop2-Basetis/main/subset_
 
     d3.zoom().on("zoom", (event) =>{ 
     node.attr("transform", event.transform),
-    link.attr("transform", event.transform)})(svg);
+    link.attr("transform", event.transform)}).scaleExtent([1, 40])(svg);
     
     node.append("title")
         .text(d => d.labels[0]);
